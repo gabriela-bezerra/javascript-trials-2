@@ -15,7 +15,33 @@ function wordsInCommon(words1, words2) {
   return Array.from(result);
 
 }
-
+0
 function kidsGame(names) {
-  // Replace this with your code
+  const output = [names.shift()];
+
+  const firstLetter = {};
+
+  for (const name of names) {
+    const firstChar = name[0];
+    if (!firstLetter[firstChar]) {
+      firstLetter[firstChar] = [name];
+    }
+    else {
+      firstLetter[firstChar].push(name);
+    }
+  }
+  while (true) {
+    const lastWord = output[output.length - 1];
+    const lastWordChar = lastWord[lastWord.length - 1];
+
+    if (firstLetter[lastWordChar] === undefined ||
+      firstLetter[lastWordChar].length === 0) {
+      break;
+    }
+    const nextWord = firstLetter[lastWordChar].shift();
+    output.push(nextWord);
+  }
+  return output;
+
+
 }
